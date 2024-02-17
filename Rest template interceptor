@@ -1,7 +1,5 @@
 public class LoggingRequestInterceptor implements ClientHttpRequestInterceptor {
 
-    @Autowired
-    ObjectMapper objectMapper;
 
     @Override
     public ClientHttpResponse intercept(HttpRequest request, byte[] body, ClientHttpRequestExecution execution) throws IOException {
@@ -25,7 +23,7 @@ public class LoggingRequestInterceptor implements ClientHttpRequestInterceptor {
         log.info("Status code  : {}", response.getStatusCode());
         log.info("Status text  : {}", response.getStatusText());
         log.info("Headers      : {}", response.getHeaders());
-        log.info("Body         : {}", objectMapper.writeValueAsString(response.getBody()));
+        log.info("Body         : {}", new ObjectMapper().writeValueAsString(response.getBody()));
         log.info("=======================response end=================================================");
     }
 
